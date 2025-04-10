@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class GhostNet {
 
     @Id // Primärschlüssel
-    @GeneratedValue // automatische Generierung der ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // automatische Generierung der ID
     private long id;
 
     private String coordinates; // Koordinaten des Netzes

@@ -1,4 +1,5 @@
 package main.java.model;
+
 import java.io.Serializable;
 import jakarta.persistence.*;
 
@@ -6,14 +7,15 @@ import jakarta.persistence.*;
 @Entity
 public class Person implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Primärschlüssel
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // automatische Generierung der ID
     private long id;
 
-    private String name;
-    private String number;
-    private boolean anonym;
+    private String name; // Name der Person
+    private String number; // Telefonnummer
+    private boolean anonym; // Anonymität der Person
 
+    // Getter und Setter
     public long getId() {
         return id;
     }
@@ -44,5 +46,5 @@ public class Person implements Serializable {
 
     public void setAnonym(boolean anonym) {
         this.anonym = anonym;
-    } 
+    }
 }
