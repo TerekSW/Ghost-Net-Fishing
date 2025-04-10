@@ -5,8 +5,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import main.java.model.*;
+import model.GhostNet;
+import model.GhostNetStatus;
+import model.Person;
 
-@ApplicationScoped
+@ApplicationScoped //Bean gültig, solange Applikation auf Application-Server läuft
 public class GhostNetMethods {
 
     // EntityManager fuer Zugriff auf Datenbank
@@ -14,47 +17,66 @@ public class GhostNetMethods {
     private EntityManager entityManager;
 
     // Anzeigen aller Netze
-    public List<GhostNet> getAllNets() {
+    public List<GhostNet> getAllNets() {    
         return entityManager.createQuery("SELECT a FROM GhostNet a", GhostNet.class)
                 .getResultList(); // Ergebnis als Liste
     }
 
     // Anzeigen aller Netze nach Status
     public List<GhostNet> getByStatus(GhostNetStatus status) {
-        return entityManager.createQuery("SELECT a FROM GhostNet a WHERE a.status = :status", GhostNet.class)
-                .setParameter("status", status)
+        return entityManager.createQuery("SELECT a FROM GhostNet a WHERE a.status = :status", GhostNet.class)   //Query für Suche nach Status
+                .setParameter("status", status) //Filter nach Status
                 .getResultList(); // Ergebnis als Liste
     }
 
     // MUST 1 Netz erfassen (auch anonym möglich)
-    @Transactional
+    @Transactional  //Führe Datenbank-Transaktion aus
     public void meldeNetz(GhostNet net) {
 
-        if(net == null) {
+        //kein Netz eingetragen --> Fehlermeldung
+        if (net == null) {
             throw new IllegalArgumentException("Bitte tragen Sie die Informationen des Netzes ein.");
         }
 
-        net.setStatus(GhostNetStatus.GEMELDET); 
+        net.setStatus(GhostNetStatus.GEMELDET); //eingetragenes Netz auf den Status GEMELDET setzen
 
-        Person person = net.getMeldendPerson();
+        Person person = net.getMeldendPerson(); //meldende Person abrufen
 
-        boolean anonym = false;
+        boolean anonym = false; 
 
-        if (person == null) { // Wenn keine Person angegeben ist, dann anonym
+        //prüfen, ob Person nicht vorhanden --> anonym
+        if (person == null) { 
             anonym = true;
+        //prüfen, ob Name/Telefonnummer leer --> anonym
         } else if ((person.getName() == null || person.getName().isBlank()) &&
                 (person.getNumber() == null || person.getNumber().isBlank())) {
-            anonym = true;
+            anonym = true;  
         }
 
-        if(anonym) {
+        //wenn anonym Name/Telefonnummer null
+        if (anonym) {
             person.setName(null);
             person.setNumber(null);
         }
 
-        net.setMeldendPerson(person);
-        entityManager.persist(net);
+        net.setMeldendPerson(person);   //meldende Person Netz zuweisen
+        entityManager.persist(net); //Netz speichern  
     }
 
-    
+    // MUST 2 Zur Bergung eintragen
+    @Transactional //Führe Datenbank-Transaktion aus
+    public void bergeNetz(GhostNet net, Person person) {
+        net.setStatus(GhostNetStatus.BERGUNG_BEVORSTEHEND); // setze Status auf BERGUNG_BEVORSTEHEND
+        net.setBergendePerson(person); // Person als bergende Person speichern
+        entityManager.merge(net); // vorhandenes Netz aktualisieren
+    }
+
+    // MUST 3 alle noch zu bergenden Netze anzeigen
+    @Transactional  //Führe Datenbank-Transaktion aus
+    public List<GhostNet> getZuBergendeNetze() {
+        return entityManager.createQuery("SELECT a FROM GhostNet a WHERE a.status = :status", GhostNet.class) //Query für Suche nach Status  
+                .setParameter("status", GhostNetStatus.GEMELDET)    //Filter nach Status GEMELDET     
+                .getResultList(); // Liste mit Netzen --> nur gemeldete Netze
+    }
+
 }
