@@ -11,7 +11,7 @@
 
         <!-- Koordinaten des Netzes-->
         <h:outputLabel for="coordinates" value="Koordinaten" />
-        <h:inputText id="coordinates" value="#{ghostNetcontroller.newNet.coordinates}" required="true" />
+        <h:inputText id="coordinates" value="#{ghostNetcontroller.newNet.coordinates}" required="true" />   
 
         <!-- Größe des Netzes-->
         <h:outputLabel for="size" value="Netzgröße: " />
@@ -24,7 +24,7 @@
         <h:outputLabel for="name" value="Name: " />
         <h:inputText id="name" value="#{ghostNetController.newPerson.name}" />
 
-        <!--Telefonnummer--->
+        <!--Telefonnummer-->
         <h:outputLabel for="number" value="Telefonnnummer: " />
         <h:inputText id="number" value="#{ghostNetController.newPerson.number}" />
 
@@ -33,5 +33,3 @@
         <h:commandButton value="Geisternetz melden" action="'{GhostnetController.meldeNetz}" />
     </h:form>
 </h:body>
-
-</html>
