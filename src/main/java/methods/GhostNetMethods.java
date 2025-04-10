@@ -79,4 +79,17 @@ public class GhostNetMethods {
                 .getResultList(); // Liste mit Netzen --> nur gemeldete Netze
     }
 
+    // MUST 4 Netz als geborgen melden
+    @Transactional  //Führe Datenbank-Transaktion aus
+    public void setGeborgen(GhostNet net) {
+        net.setStatus(GhostNetStatus.GEBORGEN); // Status ändern
+        entityManager.merge(net); // vorhandenes Netz aktualisieren
+    }
+
+    // COULD 5 Netz als verschollen melden
+    @Transactional  //Führe Datenbank-Transaktion aus
+    public void setVerschollen(GhostNet net, Person person) {
+        net.setStatus(GhostNetStatus.VERSCHOLLEN); // Status ändern
+        entityManager.merge(net); // Netz aktualisieren
+    }
 }
