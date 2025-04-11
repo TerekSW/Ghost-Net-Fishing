@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Zur Bergung anmelden</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h2>Zur Bergung anmelden</h2>
+
+        <!--Anzeige ausgewähltes Netz -->
+        <h:outputText
+            value="Netz: #{ghostNetController.chosenNet.coordinates} - #{ghostNetController.chosenNet.size}" />
+
+        <!--Bergende Person-->
+        <h3>Kontaktdaten</h3>
+
+        <!--Name-->
+        <h:outputLabel for="name" value="Name: " />
+        <h:inputText id="name" value="#{ghostNetController.newPerson.name}" />
+
+        <!--Telefonnummer-->
+        <h:outputLabel for="number" value="Telefonnummer: " />
+        <h:inputText id="number" value="#{ghostNetController.newPerson.number}" />
+
+        <br /> <br />
+        <!--Button Aufrufen der bergeNetz-Methode-->
+        <h:commandButton value="Bergung übernehmen" action="#{ghostNetController.bergeNetz}" />
+    </h:form>
+</h:body>
+
+</html>
