@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 //mögliche Statuswerte eines Geisternetzes
 public enum GhostNetStatus {

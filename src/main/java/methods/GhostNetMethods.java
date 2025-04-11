@@ -1,13 +1,10 @@
-package main.java.methods;
+package methods;
 
 import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
-import main.java.model.*;
-import model.GhostNet;
-import model.GhostNetStatus;
-import model.Person;
+import model.*;
 
 @ApplicationScoped //Bean gültig, solange Applikation auf Application-Server läuft
 public class GhostNetMethods {

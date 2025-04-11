@@ -1,11 +1,11 @@
-package main.java.controller;
+package controller;
 
 import java.util.List;
 
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.*;
-import main.java.methods.GhostNetMethods;
-import main.java.model.*;
+import methods.*;
+import model.*;
 
 @Named // Controller über JSF zugreifbar
 @ViewScoped // Bean vorhanden, solange User auf gleichen Seite
