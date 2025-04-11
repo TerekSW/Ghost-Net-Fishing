@@ -13,12 +13,18 @@
     <h:form>
         <h3>Navigation</h3>
 
+        <!-- Buttons -->
+        <!-- Netz melden -->
         <h:commandButton value="Geisternetz melden" action="melden.xhtml?faces-redirect=true" styleClass="navButton" />
+        <!-- Zur Bergung anmelden -->
         <h:commandButton value="Zur Bergung anmelden" action="bergen.xhtml?faces-redirect=true"
             styleClass="navButton" />
+        <!-- Status ändern -->
         <h:commandButton value="Status ändern" action="status.xhtml?faces-redirect=true" styleClass="navButton" />
+        <!-- Zu bergende Netze anzeigen -->
         <h:commandButton value="Noch zu bergende Geisternetze anzeigen" action="#{ghostNetController.zuBergendeNetze}"
             styleClass="navButton" />
+        <!-- Liste der zu bergenden Netze -->
         <h:dataTable value="#{ghostNetController.zuBergendeNetze}" var="net"
             rendered="#{ghostNetController.zeigeZuBergendeNetze}" border="1" styleClass="table">
             <h:column>
@@ -34,10 +40,11 @@
                 #{net.status}
             </h:column>
         </h:dataTable>
+        <!-- Alle Geisternetze anzeigen -->
         <h:commandButton value="Alle Geisternetze anzeigen" action="#{ghostNetController.zeigeAlleNetze}"
             styleClass="navButton" />
 
-        <!-- Tabelle nur anzeigen, wenn das Flag aktiviert ist -->
+        <!-- Liste aller Geisternetze -->
         <h:dataTable value="#{ghostNetController.allNets}" var="net" rendered="#{ghostNetController.zeigeAlleNetze}"
             border="1" styleClass="table">
             <h:column>

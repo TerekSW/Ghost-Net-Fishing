@@ -5,6 +5,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+<!-- Maven Version -->
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>tw</groupId>
@@ -15,6 +16,7 @@
   <name>ghostnetfishing Maven Webapp</name>
   <url>http://www.example.com</url>
 
+  <!-- Java Version -->
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>

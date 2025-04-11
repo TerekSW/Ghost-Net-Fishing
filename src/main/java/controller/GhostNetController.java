@@ -3,8 +3,6 @@ package controller;
 import java.io.Serializable;
 import java.util.List;
 
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.*;
 import methods.*;
@@ -115,17 +113,17 @@ public class GhostNetController implements Serializable {
     }
 
     public void zuBergendeNetze() {
-        this.zeigeZuBergendeNetze = !this.zeigeZuBergendeNetze;
+        this.zeigeZuBergendeNetze = !this.zeigeZuBergendeNetze; // Toogle Liste
     }
 
     public void zeigeAlleNetze() {
-        this.zeigeAlleNetze = !this.zeigeAlleNetze;
+        this.zeigeAlleNetze = !this.zeigeAlleNetze; // Toogle Liste
     }
 
     // Netz als geborgen markieren
     public String setGeborgen() {
 
-        GhostNet net = ghostNetMethods.getGhostNetById(chosenNetId);
+        GhostNet net = ghostNetMethods.getGhostNetById(chosenNetId);    //Netz anhand ID abgerufen    
 
         if (net == null) {
             return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
@@ -137,13 +135,14 @@ public class GhostNetController implements Serializable {
     // Netz als verschollen markieren
     public String setVerschollen() {
 
-        GhostNet net = ghostNetMethods.getGhostNetById(chosenNetId);
+        GhostNet net = ghostNetMethods.getGhostNetById(chosenNetId);    //Netz anhand ID abgerufen
 
+        //Überprüfung ob Netz ausgewählt
         if (net == null) {
             return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
         }
 
-        ghostNetMethods.setVerschollen(chosenNetId, newPerson);
+        ghostNetMethods.setVerschollen(chosenNetId, newPerson); //Status auf VERSCHOLLEN setzen
         return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
     }
 }

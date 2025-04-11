@@ -1,11 +1,11 @@
 body {
     font-family: Arial, sans-serif;
-    background: lightblue;
+    background: white;
     padding: 20px;
 }
 
 h1 {
-    color: #2E4053;
+    color: black;
 }
 
 .navButton {
