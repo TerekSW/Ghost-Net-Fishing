@@ -10,7 +10,7 @@ import model.*;
 public class GhostNetMethods {
 
     // EntityManager fuer Zugriff auf Datenbank
-    @PersistenceContext
+    @PersistenceContext(unitName = "GhostNetPersistence")
     private EntityManager entityManager;
 
     // Anzeigen aller Netze

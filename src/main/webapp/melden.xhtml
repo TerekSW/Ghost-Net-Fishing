@@ -10,26 +10,31 @@
         <h2>Geisternetz melden</h2>
 
         <!-- Koordinaten des Netzes-->
-        <h:outputLabel for="coordinates" value="Koordinaten" />
-        <h:inputText id="coordinates" value="#{ghostNetcontroller.newNet.coordinates}" required="true" />   
-
+        <h:outputLabel for="coordinates" value="*Koordinaten" />
+        <h:inputText id="coordinates" value="#{ghostNetController.newNet.coordinates}" required="true"
+            requiredMessage="Bitte geben Sie die Koordinaten an.">
+            <f:passThroughAttribute name="placeholder" value="z. B. 53.123, 10.456" /> <!--Beispielkoordinaten-->
+        </h:inputText>
         <!-- Größe des Netzes-->
-        <h:outputLabel for="size" value="Netzgröße: " />
-        <h:inputText id="size" value="#{ghostNetController.newNet.size}" required="true" />
+        <h:outputLabel for="size" value="*Netzgröße in m^2: " />
+        <h:inputText id="size" value="#{ghostNetController.newNet.size}" required="true"
+            requiredMessage="Bitte geben Sie die geschätzte Größe an." />
 
         <!-- Meldende Person-->
         <h3>Kontaktdaten (optional)</h3>
 
         <!-- Name der Person-->
-        <h:outputLabel for="name" value="Name: " />
+        <h:outputLabel for="name" value="Name (optional): " />
         <h:inputText id="name" value="#{ghostNetController.newPerson.name}" />
 
         <!--Telefonnummer-->
-        <h:outputLabel for="number" value="Telefonnnummer: " />
+        <h:outputLabel for="number" value="Telefonnnummer (optional): " />
         <h:inputText id="number" value="#{ghostNetController.newPerson.number}" />
 
         <br /><br />
         <!--Aufrufen der meldeNetz-Methode durch Button-->
-        <h:commandButton value="Geisternetz melden" action="{GhostnetController.meldeNetz}" />
+        <h:commandButton value="Geisternetz melden" action="#{ghostNetController.meldeNetz}" />
     </h:form>
 </h:body>
+
+</html>

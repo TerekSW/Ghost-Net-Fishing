@@ -16,10 +16,10 @@ public class GhostNet {
     @Enumerated(EnumType.STRING) // speichert Enum als String
     private GhostNetStatus status; // aktueller Status des Netzes
 
-    @ManyToOne // Viele Netze können von einer Person gemeldet werden
+    @ManyToOne(cascade = CascadeType.PERSIST) // Viele Netze können von einer Person gemeldet werden
     private Person meldendePerson;
 
-    @ManyToOne // Viele Netze können von einer Person geborgen werden
+    @ManyToOne(cascade = CascadeType.PERSIST) // Viele Netze können von einer Person geborgen werden
     private Person bergendePerson;
 
     // Getter und Setter
