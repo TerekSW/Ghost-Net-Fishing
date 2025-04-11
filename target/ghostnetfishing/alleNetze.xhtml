@@ -36,7 +36,13 @@
 
                 <f:facet name="header">Gemeldet von</f:facet>
                 <!-- keine meldende Person eingetragen = anonym -->
-                <h:outputText value="#{net.meldendePerson != null ? net.meldendePerson.name : 'Anonym'}" />
+                <h:outputText value="#{net.meldendePerson != null and net.meldendePerson.anonym ? 'Ja' : 'Nein'}" />
+            </h:column>
+
+            <!-- Anonym? -->
+            <h:column>
+                <f:facet name="header">Anonym?</f:facet>
+                <h:outputText value="#{net.meldendePerson.anonym ? 'Ja' : 'Nein'}" />
             </h:column>
 
             <!-- Spalte bergende Person -->
