@@ -10,7 +10,7 @@ import model.*;
 
 @Named // Controller über JSF zugreifbar
 @ViewScoped // Bean vorhanden, solange User auf gleichen Seite
-public class GhostNetController implements Serializable{
+public class GhostNetController implements Serializable {
 
     @Inject // GhostNetMethods automatisch eingebunden
     private GhostNetMethods ghostNetMethods;
@@ -18,6 +18,8 @@ public class GhostNetController implements Serializable{
     private GhostNet newNet = new GhostNet(); // neues Netz
 
     private Person newPerson = new Person(); // neue Person (meldend/bergend)
+
+    private long chosenNetId;
 
     private GhostNet chosenNet; // ausgewaehltes Netz
 
@@ -46,6 +48,14 @@ public class GhostNetController implements Serializable{
         this.chosenNet = chosenNet;
     }
 
+    public long getChosenNetId() {
+        return chosenNetId;
+    }
+
+    public void setChosenNetId(long id) {
+        this.chosenNetId = id;
+    }
+
     // Einbettung Methoden aus GhostNetMethods
     // Zeige alle Geisternetze an
     public List<GhostNet> getAllNets() {
@@ -58,18 +68,21 @@ public class GhostNetController implements Serializable{
     }
 
     // Meldung eines neuen Netzes mit Kontaktdaten (optional)
-    public void meldeNetz() {
+    public String meldeNetz() {
         newNet.setMeldendPerson(newPerson); // Person dem Netz zuweisen
         ghostNetMethods.meldeNetz(newNet); // Aufruf der meldeNetz-Methode aus GhostNetMethods
 
         // Eingabefeld zurücksetzten
         newNet = new GhostNet();
         newPerson = new Person();
+
+        return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
     }
 
     // Zur Bergung eines Netzes eintragen
     public void bergeNetz() {
-        ghostNetMethods.bergeNetz(chosenNet, newPerson);
+        GhostNet selected = ghostNetMethods.getGhostNetById(chosenNetId);
+        ghostNetMethods.bergeNetz(selected, newPerson);
     }
 
     // Zeige alle noch zu bergenden Netze an (Status --> GEMELDET)

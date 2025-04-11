@@ -66,9 +66,15 @@ public class GhostNetMethods {
         entityManager.persist(person);
         net.setMeldendPerson(person); // meldende Person Netz zuweisen
         entityManager.persist(net); // Netz speichern
+
     }
 
     // MUST 2 Zur Bergung eintragen
+    // Einzelnes Netz anhand ID abrufen
+    public GhostNet getGhostNetById(long id) {
+        return entityManager.find(GhostNet.class, id);
+    }
+
     @Transactional // Führe Datenbank-Transaktion aus
     public void bergeNetz(GhostNet net, Person person) {
         if ((person.getName() == null || person.getName().isBlank()) &&
@@ -77,7 +83,7 @@ public class GhostNetMethods {
         } else {
             person.setAnonym(false);
         }
-        entityManager.persist(person); 
+        entityManager.persist(person);
         net.setStatus(GhostNetStatus.BERGUNG_BEVORSTEHEND); // setze Status auf BERGUNG_BEVORSTEHEND
         net.setBergendePerson(person); // Person als bergende Person speichern
         entityManager.merge(net); // vorhandenes Netz aktualisieren

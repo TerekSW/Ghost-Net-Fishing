@@ -10,6 +10,8 @@ public class GhostNet {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // automatische Generierung der ID
     private long id;
 
+    private long chosenNetId;
+
     private String coordinates; // Koordinaten des Netzes
     private String size; // Größe des Netzes
 
@@ -23,6 +25,22 @@ public class GhostNet {
     private Person bergendePerson;
 
     // Getter und Setter
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getChosenNetId() {
+        return chosenNetId;
+    }
+
+    public void setChosenNetId(long id) {
+        this.chosenNetId = id;
+    }
+
     public String getCoordinates() {
         return coordinates;
     }
