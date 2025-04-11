@@ -21,13 +21,15 @@ public class GhostNetMethods {
 
     // Anzeigen aller Netze nach Status
     public List<GhostNet> getByStatus(GhostNetStatus status) {
-        return entityManager.createQuery("SELECT a FROM GhostNet a WHERE a.status = :status", GhostNet.class) // Query
-                                                                                                              // für
-                                                                                                              // Suche
-                                                                                                              // nach
-                                                                                                              // Status
+        // Query für Suche nach Status
+        return entityManager.createQuery("SELECT a FROM GhostNet a WHERE a.status = :status", GhostNet.class)
                 .setParameter("status", status) // Filter nach Status
                 .getResultList(); // Ergebnis als Liste
+    }
+
+    // Einzelnes Netz anhand ID abrufen
+    public GhostNet getGhostNetById(long id) {
+        return entityManager.find(GhostNet.class, id);
     }
 
     // MUST 1 Netz erfassen (auch anonym möglich)
@@ -63,27 +65,24 @@ public class GhostNetMethods {
             person.setAnonym(false);
         }
 
-        entityManager.persist(person);
+        entityManager.persist(person); // Person speichern
         net.setMeldendPerson(person); // meldende Person Netz zuweisen
         entityManager.persist(net); // Netz speichern
 
     }
 
     // MUST 2 Zur Bergung eintragen
-    // Einzelnes Netz anhand ID abrufen
-    public GhostNet getGhostNetById(long id) {
-        return entityManager.find(GhostNet.class, id);
-    }
-
     @Transactional // Führe Datenbank-Transaktion aus
     public void bergeNetz(GhostNet net, Person person) {
+        // prüfe ob anonym
         if ((person.getName() == null || person.getName().isBlank()) &&
                 (person.getNumber() == null || person.getNumber().isBlank())) {
             person.setAnonym(true);
         } else {
             person.setAnonym(false);
         }
-        entityManager.persist(person);
+
+        entityManager.persist(person); // bergende Person speichern
         net.setStatus(GhostNetStatus.BERGUNG_BEVORSTEHEND); // setze Status auf BERGUNG_BEVORSTEHEND
         net.setBergendePerson(person); // Person als bergende Person speichern
         entityManager.merge(net); // vorhandenes Netz aktualisieren
@@ -92,11 +91,8 @@ public class GhostNetMethods {
     // MUST 3 alle noch zu bergenden Netze anzeigen
     @Transactional // Führe Datenbank-Transaktion aus
     public List<GhostNet> getZuBergendeNetze() {
-        return entityManager.createQuery("SELECT a FROM GhostNet a WHERE a.status = :status", GhostNet.class) // Query
-                                                                                                              // für
-                                                                                                              // Suche
-                                                                                                              // nach
-                // Status
+        // Query für Suche nach Status
+        return entityManager.createQuery("SELECT a FROM GhostNet a WHERE a.status = :status", GhostNet.class)
                 .setParameter("status", GhostNetStatus.GEMELDET) // Filter nach Status GEMELDET
                 .getResultList(); // Liste mit Netzen --> nur gemeldete Netze
     }
@@ -104,16 +100,16 @@ public class GhostNetMethods {
     // MUST 4 Netz als geborgen melden
     @Transactional // Führe Datenbank-Transaktion aus
     public void setGeborgen(long id) {
-        GhostNet net = getGhostNetById(id);
-        net.setStatus(GhostNetStatus.GEBORGEN);
-        entityManager.merge(net);
+        GhostNet net = getGhostNetById(id); // Netz anhand ID laden
+        net.setStatus(GhostNetStatus.GEBORGEN); // Staus setzen
+        entityManager.merge(net);   // Netz speichern
     }
 
     // COULD 5 Netz als verschollen melden
     @Transactional // Führe Datenbank-Transaktion aus
     public void setVerschollen(long id, Person person) {
-        GhostNet net = getGhostNetById(id);
-        net.setStatus(GhostNetStatus.VERSCHOLLEN);
-        entityManager.merge(net);
+        GhostNet net = getGhostNetById(id); // Netz anhand ID laden
+        net.setStatus(GhostNetStatus.VERSCHOLLEN);  // Staus setzen
+        entityManager.merge(net);   // Netz speichern
     }
 }
