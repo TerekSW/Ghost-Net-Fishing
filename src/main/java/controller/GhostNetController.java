@@ -81,8 +81,8 @@ public class GhostNetController implements Serializable {
 
     // Zur Bergung eines Netzes eintragen
     public void bergeNetz() {
-        GhostNet selected = ghostNetMethods.getGhostNetById(chosenNetId);
-        ghostNetMethods.bergeNetz(selected, newPerson);
+        GhostNet selected = ghostNetMethods.getGhostNetById(chosenNetId);   //Netz anhand ID abrufen
+        ghostNetMethods.bergeNetz(selected, newPerson); //Netz mit Person verknüpfen
     }
 
     // Zeige alle noch zu bergenden Netze an (Status --> GEMELDET)
@@ -92,11 +92,11 @@ public class GhostNetController implements Serializable {
 
     // Netz als geborgen markieren
     public void setGeborgen() {
-        ghostNetMethods.setGeborgen(chosenNet);
-    }
+        ghostNetMethods.setGeborgen(chosenNetId);    }
 
     // Netz als verschollen markieren
     public void setVerschollen() {
-        ghostNetMethods.setVerschollen(chosenNet, newPerson);
+        ghostNetMethods.setVerschollen(chosenNetId, newPerson); // ✔ auch korrekt
+
     }
 }

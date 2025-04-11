@@ -103,15 +103,17 @@ public class GhostNetMethods {
 
     // MUST 4 Netz als geborgen melden
     @Transactional // Führe Datenbank-Transaktion aus
-    public void setGeborgen(GhostNet net) {
-        net.setStatus(GhostNetStatus.GEBORGEN); // Status ändern
-        entityManager.merge(net); // vorhandenes Netz aktualisieren
+    public void setGeborgen(long id) {
+        GhostNet net = getGhostNetById(id);
+        net.setStatus(GhostNetStatus.GEBORGEN);
+        entityManager.merge(net);
     }
 
     // COULD 5 Netz als verschollen melden
     @Transactional // Führe Datenbank-Transaktion aus
-    public void setVerschollen(GhostNet net, Person person) {
-        net.setStatus(GhostNetStatus.VERSCHOLLEN); // Status ändern
-        entityManager.merge(net); // Netz aktualisieren
+    public void setVerschollen(long id, Person person) {
+        GhostNet net = getGhostNetById(id);
+        net.setStatus(GhostNetStatus.VERSCHOLLEN);
+        entityManager.merge(net);
     }
 }
