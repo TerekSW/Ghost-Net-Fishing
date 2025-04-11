@@ -39,6 +39,12 @@
                 <h:outputText value="#{net.meldendePerson != null ? net.meldendePerson.name : 'Anonym'}" />
             </h:column>
 
+            <!-- Anonym? -->
+            <h:column>
+                <f:facet name="header">Anonym?</f:facet>
+                <h:outputText value="#{net.meldendePerson.anonym ? 'Ja' : 'Nein'}" />
+            </h:column>
+
             <!-- Spalte bergende Person -->
             <h:column>
                 <f:facet name="header">Bergung</f:facet>
