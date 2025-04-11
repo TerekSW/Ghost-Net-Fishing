@@ -10,6 +10,14 @@
         <h2>Zur Bergung anmelden</h2>
 
         <!--Anzeige ausgewähltes Netz -->
+        <h:outputLabel for="bergendeNetze" value="Geisternetz auswählen: " />
+        <h:selectOneMenu id="bergendeNetze" value="#{ghostNetController.chosenNet}">
+            <f:selectItems value="#{ghostNetController.zuBergendeNetze}"
+                           var="netz"
+                           itemValue="#{netz}"
+                           itemLabel="#{netz.coordinates} - #{netz.size} m²" />
+        </h:selectOneMenu>
+
         <h:outputText
             value="Netz: #{ghostNetController.chosenNet.coordinates} - #{ghostNetController.chosenNet.size}" />
 
