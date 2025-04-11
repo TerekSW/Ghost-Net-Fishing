@@ -12,13 +12,22 @@
         <!-- Koordinaten des Netzes-->
         <h:outputLabel for="coordinates" value="*Koordinaten" />
         <h:inputText id="coordinates" value="#{ghostNetController.newNet.coordinates}" required="true"
-            requiredMessage="Bitte geben Sie die Koordinaten an.">
+            requiredMessage="Bitte geben Sie die Koordinaten an.(Zahl)"
+            validatorMessage="Koordinaten müssen zwei Zahlen im Format 53.123,10.456 enthalten.">
             <f:passThroughAttribute name="placeholder" value="z. B. 53.123, 10.456" /> <!--Beispielkoordinaten-->
+            <f:validateRegex pattern="\d+(\.\d+)?(,\s*\d+(\.\d+)?)?" />
         </h:inputText>
         <!-- Größe des Netzes-->
+        <h:message for="coordinates" style="color: red;" />
+
         <h:outputLabel for="size" value="*Netzgröße in m^2: " />
         <h:inputText id="size" value="#{ghostNetController.newNet.size}" required="true"
-            requiredMessage="Bitte geben Sie die geschätzte Größe an." />
+            requiredMessage="Bitte geben Sie die geschätzte Größe an (Zahl/Dezimalzahl)"
+            validatorMessage="Die Netzgröße muss eine Zahl sein">
+
+            <f:validateRegex pattern="\d+(\.\d+)?" /> <!--Nur Zahlen/Dezimalzahlen-->
+        </h:inputText>
+        <h:message for="size" style="color: red;" />
 
         <!-- Meldende Person-->
         <h3>Kontaktdaten (optional)</h3>
