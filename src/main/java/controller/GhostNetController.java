@@ -3,6 +3,8 @@ package controller;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.*;
 import methods.*;
@@ -22,6 +24,10 @@ public class GhostNetController implements Serializable {
     private long chosenNetId;
 
     private GhostNet chosenNet; // ausgewaehltes Netz
+
+    private boolean zeigeZuBergendeNetze = false;
+
+    private boolean zeigeAlleNetze = false;
 
     // Getter und Setter
     public GhostNet getNewNet() {
@@ -56,6 +62,22 @@ public class GhostNetController implements Serializable {
         this.chosenNetId = id;
     }
 
+    public boolean isZeigeZuBergendeNetze() {
+        return zeigeZuBergendeNetze;
+    }
+
+    public void setZeigeZuBergendeNetze(boolean zeigeZuBergendeNetze) {
+        this.zeigeZuBergendeNetze = zeigeZuBergendeNetze;
+    }
+
+    public boolean isZeigeAlleNetze() {
+        return zeigeAlleNetze;
+    }
+
+    public void setZeigeAlleNetze(boolean zeigeAlleNetze) {
+        this.zeigeAlleNetze = zeigeAlleNetze;
+    }
+
     // Einbettung Methoden aus GhostNetMethods
     // Zeige alle Geisternetze an
     public List<GhostNet> getAllNets() {
@@ -80,9 +102,11 @@ public class GhostNetController implements Serializable {
     }
 
     // Zur Bergung eines Netzes eintragen
-    public void bergeNetz() {
-        GhostNet selected = ghostNetMethods.getGhostNetById(chosenNetId);   //Netz anhand ID abrufen
-        ghostNetMethods.bergeNetz(selected, newPerson); //Netz mit Person verknüpfen
+    public String bergeNetz() {
+        GhostNet selected = ghostNetMethods.getGhostNetById(chosenNetId); // Netz anhand ID abrufen
+        ghostNetMethods.bergeNetz(selected, newPerson); // Netz mit Person verknüpfen
+
+        return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
     }
 
     // Zeige alle noch zu bergenden Netze an (Status --> GEMELDET)
@@ -90,13 +114,36 @@ public class GhostNetController implements Serializable {
         return ghostNetMethods.getZuBergendeNetze();
     }
 
+    public void zuBergendeNetze() {
+        this.zeigeZuBergendeNetze = !this.zeigeZuBergendeNetze;
+    }
+
+    public void zeigeAlleNetze() {
+        this.zeigeAlleNetze = !this.zeigeAlleNetze;
+    }
+
     // Netz als geborgen markieren
-    public void setGeborgen() {
-        ghostNetMethods.setGeborgen(chosenNetId);    }
+    public String setGeborgen() {
+
+        GhostNet net = ghostNetMethods.getGhostNetById(chosenNetId);
+
+        if (net == null) {
+            return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
+        }
+        ghostNetMethods.setGeborgen(chosenNetId);
+        return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
+    }
 
     // Netz als verschollen markieren
-    public void setVerschollen() {
-        ghostNetMethods.setVerschollen(chosenNetId, newPerson); // ✔ auch korrekt
+    public String setVerschollen() {
 
+        GhostNet net = ghostNetMethods.getGhostNetById(chosenNetId);
+
+        if (net == null) {
+            return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
+        }
+
+        ghostNetMethods.setVerschollen(chosenNetId, newPerson);
+        return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
     }
 }

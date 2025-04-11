@@ -4,6 +4,7 @@
 
 <h:head>
     <title>Ghost Net Fishing</title>
+    <h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 
 <h:body>
@@ -12,13 +13,52 @@
     <h:form>
         <h3>Navigation</h3>
 
-        <h:commandButton value="Geisternetz melden" action="melden.xhtml?faces-redirect=true" />
-        <h:commandButton value="Zur Bergung anmelden" action="bergen.xhtml?faces-redirect=true" />
-        <h:commandButton value="Status ändern" action="status.xhtml?faces-redirect=true" />
-        <h:commandButton value="Alle Geisternetze anzeigen" action="alle.xhtml?faces-redirect=true" />
+        <h:commandButton value="Geisternetz melden" action="melden.xhtml?faces-redirect=true" styleClass="navButton" />
+        <h:commandButton value="Zur Bergung anmelden" action="bergen.xhtml?faces-redirect=true"
+            styleClass="navButton" />
+        <h:commandButton value="Status ändern" action="status.xhtml?faces-redirect=true" styleClass="navButton" />
+        <h:commandButton value="Noch zu bergende Geisternetze anzeigen" action="#{ghostNetController.zuBergendeNetze}"
+            styleClass="navButton" />
+        <h:dataTable value="#{ghostNetController.zuBergendeNetze}" var="net"
+            rendered="#{ghostNetController.zeigeZuBergendeNetze}" border="1" styleClass="table">
+            <h:column>
+                <f:facet name="header">Koordinaten</f:facet>
+                #{net.coordinates}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Größe</f:facet>
+                #{net.size}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                #{net.status}
+            </h:column>
+        </h:dataTable>
+        <h:commandButton value="Alle Geisternetze anzeigen" action="#{ghostNetController.zeigeAlleNetze}"
+            styleClass="navButton" />
 
-
+        <!-- Tabelle nur anzeigen, wenn das Flag aktiviert ist -->
+        <h:dataTable value="#{ghostNetController.allNets}" var="net" rendered="#{ghostNetController.zeigeAlleNetze}"
+            border="1" styleClass="table">
+            <h:column>
+                <f:facet name="header">Koordinaten</f:facet>
+                #{net.coordinates}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Größe</f:facet>
+                #{net.size}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                #{net.status}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Gemeldet von</f:facet>
+                <h:outputText value="#{net.meldendPerson != null ? net.meldendPerson.name : 'Anonym'}" />
+            </h:column>
+        </h:dataTable>
     </h:form>
 
 </h:body>
+
 </html>

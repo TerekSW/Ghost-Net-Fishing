@@ -10,13 +10,16 @@
     <h:form>
         <h2>Status eines Geisternetzes ändern</h2>
 
+        <!--Anzeige ausgewähltes Netz -->
         <h:outputLabel for="statusNetze" value="Netz auswählen:" />
+        <!-- Auswahlmenü Netze -->
         <h:selectOneMenu value="#{ghostNetController.chosenNetId}">
+            <!--Liste der Netze anhand Id-->
             <f:selectItems value="#{ghostNetController.allNets}" var="net" itemValue="#{net.id}"
                 itemLabel="#{net.coordinates} - #{net.size} m² (#{net.status})" />
         </h:selectOneMenu>
 
-        <!-- Anzeigen ausgewähltes Netz (Koordinaten + Größe)-->
+        <!-- Vorschau ausgewähltes Netz -->
         <h:outputText
             value="Netz: #{ghostNetController.chosenNet.coordinates} - #{ghostNetController.chosenNet.size}" />
 
