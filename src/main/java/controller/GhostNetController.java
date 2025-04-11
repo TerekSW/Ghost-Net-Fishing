@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.faces.view.ViewScoped;
@@ -9,7 +10,7 @@ import model.*;
 
 @Named // Controller über JSF zugreifbar
 @ViewScoped // Bean vorhanden, solange User auf gleichen Seite
-public class GhostNetController {
+public class GhostNetController implements Serializable{
 
     @Inject // GhostNetMethods automatisch eingebunden
     private GhostNetMethods ghostNetMethods;

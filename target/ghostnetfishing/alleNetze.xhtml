@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Alle Geisternetze</title>
+</h:head>
+<h:body>
+    <h1>Alle Geisternetze</h1>
+
+    <!--JSF-Formular-->
+    <h:form>
+        <!--Tabelle mit Geisternetzen aus Controller-->
+        <h:dataTable value="#{ghostNetController.getAllNets}" var="net" border="1">
+
+            <!--Spalte Koordinaten-->
+            <h:column>
+                <f:facet name="header">Koordinaten</f:facet>
+                #{net.coordinates}
+            </h:column>
+
+            <!-- Spalte Größe -->
+            <h:column>
+                <f:facet name="header">Größe</f:facet>
+                #{net.size}
+            </h:column>
+
+            <!-- Spalte Status -->
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                #{net.status}
+            </h:column>
+
+            <!-- Spalte meldende Person -->
+            <h:column>
+
+                <f:facet name="header">Gemeldet von</f:facet>
+                <!-- keine meldende Person eingetragen = anonym -->
+                <h:outputText value="#{net.meldendePerson != null ? net.meldendePerson.name : 'Anonym'}" />
+            </h:column>
+
+            <!-- Spalte bergende Person -->
+            <h:column>
+                <f:facet name="header">Bergung</f:facet>
+                <!-- Keine bergende Person eingetragen = noch offen -->
+                <h:outputText value="#{net.bergendePerson != null ? net.bergendePerson.name : 'Noch offen'}" />
+            </h:column>
+
+        </h:dataTable>
+    </h:form>
+</h:body>
+
+</html>
