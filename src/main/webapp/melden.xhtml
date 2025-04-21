@@ -4,13 +4,14 @@
 
 <h:head>
     <title>Geisternetz melden</title>
+    <h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <h:body>
     <h:form>
         <h2>Geisternetz melden</h2>
 
         <!-- Koordinaten des Netzes-->
-        <h:outputLabel for="coordinates" value="*Koordinaten" />
+        <h:outputLabel for="coordinates" value="Koordinaten (Pflicht): " styleClass="label" />
         <h:inputText id="coordinates" value="#{ghostNetController.newNet.coordinates}" required="true"
             requiredMessage="Bitte geben Sie die Koordinaten an."
             validatorMessage="Koordinaten müssen zwei Zahlen im Format 53.123,10.456 enthalten.">
@@ -23,7 +24,7 @@
         <h:message for="coordinates" style="color: red;" />
 
         <!-- Größe des Netzes-->
-        <h:outputLabel for="size" value="*Netzgröße in m^2: " />
+        <h:outputLabel for="size" value="Netzgröße in m^2 (Pflicht): " styleClass="label"/>
         <h:inputText id="size" value="#{ghostNetController.newNet.size}" required="true"
             requiredMessage="Bitte geben Sie die geschätzte Größe an."
             validatorMessage="Die Netzgröße muss eine Zahl sein">
@@ -37,16 +38,16 @@
         <h3>Kontaktdaten (optional)</h3>
 
         <!-- Name der Person-->
-        <h:outputLabel for="name" value="Name (optional): " />
+        <h:outputLabel for="name" value="Name (optional): " styleClass="label" />
         <h:inputText id="name" value="#{ghostNetController.newPerson.name}" />
 
         <!--Telefonnummer-->
-        <h:outputLabel for="number" value="Telefonnnummer (optional): " />
+        <h:outputLabel for="number" value="Telefonnnummer (optional): " styleClass="label" />
         <h:inputText id="number" value="#{ghostNetController.newPerson.number}" />
 
         <br /><br />
         <!--Aufrufen der meldeNetz-Methode durch Button-->
-        <h:commandButton value="Geisternetz melden" action="#{ghostNetController.meldeNetz}" />
+        <h:commandButton value="Geisternetz melden" action="#{ghostNetController.meldeNetz}" styleClass="navButton" />
     </h:form>
 </h:body>
 

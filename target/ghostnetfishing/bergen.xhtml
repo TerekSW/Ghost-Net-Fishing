@@ -4,13 +4,14 @@
 
 <h:head>
     <title>Zur Bergung anmelden</title>
+    <h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <h:body>
     <h:form>
         <h2>Zur Bergung anmelden</h2>
 
         <!--Anzeige ausgewähltes Netz -->
-        <h:outputLabel for="bergendeNetze" value="Geisternetz auswählen: " />
+        <h:outputLabel for="bergendeNetze" value="Geisternetz auswählen: " styleClass="label" />
         <!-- Auswahlmenü Netze -->
         <h:selectOneMenu id="bergendeNetze" value="#{ghostNetController.chosenNetId}" required="true"
             requiredMessage="Bitte wählen Sie ein Netz aus.">>
@@ -27,16 +28,16 @@
         <h3>Kontaktdaten</h3>
 
         <!--Name-->
-        <h:outputLabel for="name" value="Name: " />
+        <h:outputLabel for="name" value="Name: " styleClass="label" />
         <h:inputText id="name" value="#{ghostNetController.newPerson.name}" />
 
         <!--Telefonnummer-->
-        <h:outputLabel for="number" value="Telefonnummer: " />
+        <h:outputLabel for="number" value="Telefonnummer: " styleClass="label" />
         <h:inputText id="number" value="#{ghostNetController.newPerson.number}" />
 
         <br /> <br />
         <!--Button Aufrufen der bergeNetz-Methode-->
-        <h:commandButton value="Bergung übernehmen" action="#{ghostNetController.bergeNetz}" />
+        <h:commandButton value="Bergung übernehmen" action="#{ghostNetController.bergeNetz}" styleClass="navButton" />
     </h:form>
 </h:body>
 

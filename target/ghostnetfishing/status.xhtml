@@ -4,6 +4,7 @@
 
 <h:head>
     <title>Netzstatus ändern</title>
+    <h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <h:body>
     <!-- JSF-Formular -->
@@ -11,7 +12,7 @@
         <h2>Status eines Geisternetzes ändern</h2>
 
         <!--Anzeige ausgewähltes Netz -->
-        <h:outputLabel for="statusNetze" value="Netz auswählen:" />
+        <h:outputLabel for="statusNetze" value="Netz auswählen:" styleClass="label" />
         <!-- Auswahlmenü Netze -->
         <h:selectOneMenu value="#{ghostNetController.chosenNetId}">
             <!--Liste der Netze anhand Id-->
@@ -26,19 +27,19 @@
         <h3>Person (wenn gemeldet als verschollen) </h3>
 
         <!--Name-->
-        <h:outputLabel for="name" value="Name: " />
+        <h:outputLabel for="name" value="Name: " styleClass="label" />
         <h:inputText id="name" value="#{ghostNetController.newPerson.name}" required="false" />
 
         <!-- Telefonnummer -->
-        <h:outputLabel for="tel" value="Telefonnummer:" />
+        <h:outputLabel for="tel" value="Telefonnummer:" styleClass="label" />
         <h:inputText id="tel" value="#{ghostNetController.newPerson.number}" required="false" />
 
         <br /><br />
         <!--Button Netz als geborgen melden-->
-        <h:commandButton value="Netz als geborgen melden" action="#{ghostNetController.setGeborgen}" />
+        <h:commandButton value="Netz als geborgen melden" action="#{ghostNetController.setGeborgen}" styleClass="navButton" />
 
         <!--Button Netz als verschollen melden-->
-        <h:commandButton value="Netz als verschollen melden" action="#{ghostNetController.setVerschollen}" />
+        <h:commandButton value="Netz als verschollen melden" action="#{ghostNetController.setVerschollen}" styleClass="navButton" />
     </h:form>
 </h:body>
 
