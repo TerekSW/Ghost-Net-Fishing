@@ -65,11 +65,11 @@ public class GhostNet {
         this.status = status;
     }
 
-    public Person getMeldendPerson() {
+    public Person getMeldendePerson() {
         return meldendePerson;
     }
 
-    public void setMeldendPerson(Person meldendePerson) {
+    public void setMeldendePerson(Person meldendePerson) {
         this.meldendePerson = meldendePerson;
     }
 

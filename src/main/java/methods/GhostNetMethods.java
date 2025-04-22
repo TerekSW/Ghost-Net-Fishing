@@ -43,7 +43,7 @@ public class GhostNetMethods {
 
         net.setStatus(GhostNetStatus.GEMELDET); // eingetragenes Netz auf den Status GEMELDET setzen
 
-        Person person = net.getMeldendPerson(); // meldende Person abrufen
+        Person person = net.getMeldendePerson(); // meldende Person abrufen
 
         boolean anonym = false;
 
@@ -66,7 +66,7 @@ public class GhostNetMethods {
         }
 
         entityManager.persist(person); // Person speichern
-        net.setMeldendPerson(person); // meldende Person Netz zuweisen
+        net.setMeldendePerson(person); // meldende Person Netz zuweisen
         entityManager.persist(net); // Netz speichern
 
     }

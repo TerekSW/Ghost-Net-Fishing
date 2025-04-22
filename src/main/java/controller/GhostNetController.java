@@ -89,7 +89,7 @@ public class GhostNetController implements Serializable {
 
     // Meldung eines neuen Netzes mit Kontaktdaten (optional)
     public String meldeNetz() {
-        newNet.setMeldendPerson(newPerson); // Person dem Netz zuweisen
+        newNet.setMeldendePerson(newPerson); // Person dem Netz zuweisen
         ghostNetMethods.meldeNetz(newNet); // Aufruf der meldeNetz-Methode aus GhostNetMethods
 
         // Eingabefeld zurücksetzten
