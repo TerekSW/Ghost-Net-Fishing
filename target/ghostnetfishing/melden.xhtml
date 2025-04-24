@@ -17,7 +17,7 @@
             validatorMessage="Koordinaten müssen zwei Zahlen im Format 53.123,10.456 enthalten.">
             <!--Beispielkoordinaten-->
             <f:passThroughAttribute name="placeholder" value="z. B. 53.123, 10.456" />
-            <!-- Format: Zahl,Zahl -->
+            <!-- Format: Zahl.Zahl,Zahl.Zahl -->
             <f:validateRegex pattern="\d+(\.\d+)?(,\s*\d+(\.\d+)?)?" />
         </h:inputText>
         <!-- Fehlermeldung für dieses Feld -->
@@ -29,7 +29,7 @@
             requiredMessage="Bitte geben Sie die geschätzte Größe an."
             validatorMessage="Die Netzgröße muss eine Zahl sein">
             <!-- Format: Ganz- Dezimalzahlen -->
-            <f:validateRegex pattern="\d+(\.\d+)?" /> <!--Nur Zahlen/Dezimalzahlen-->
+            <f:validateRegex pattern="\d+(\.\d+)?" /> 
         </h:inputText>
         <!-- Fehlermeldung für dieses Feld -->
         <h:message for="size" style="color: red;" />

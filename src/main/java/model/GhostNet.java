@@ -13,7 +13,7 @@ public class GhostNet {
     private long chosenNetId;
 
     private String coordinates; // Koordinaten des Netzes
-    private long size; // Größe des Netzes
+    private String size; // Größe des Netzes
 
     @Enumerated(EnumType.STRING) // speichert Enum als String
     private GhostNetStatus status; // aktueller Status des Netzes
@@ -49,11 +49,11 @@ public class GhostNet {
         this.coordinates = coordinates;
     }
 
-    public long getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(long size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
