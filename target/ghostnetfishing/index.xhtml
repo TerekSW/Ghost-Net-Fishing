@@ -26,15 +26,15 @@
         <h:dataTable value="#{ghostNetController.zuBergendeNetze}" var="net"
             rendered="#{ghostNetController.zeigeZuBergendeNetze}" border="1" styleClass="table">
             <h:column>
-                <f:facet name="header">Koordinaten</f:facet>
+                <f:facet name="header">Koordinaten</f:facet>    <!-- Koordinaten Spalte -->
                 #{net.coordinates}
             </h:column>
             <h:column>
-                <f:facet name="header">Größe</f:facet>
+                <f:facet name="header">Größe (m²)</f:facet>  <!-- Größe Spalte -->
                 #{net.size}
             </h:column>
             <h:column>
-                <f:facet name="header">Status</f:facet>
+                <f:facet name="header">Status</f:facet> <!-- Status Spalte -->
                 #{net.status}
             </h:column>
         </h:dataTable>
@@ -46,20 +46,20 @@
         <h:dataTable value="#{ghostNetController.allNets}" var="net" rendered="#{ghostNetController.zeigeAlleNetze}"
             border="1" styleClass="table">
             <h:column>
-                <f:facet name="header">Koordinaten</f:facet>
+                <f:facet name="header">Koordinaten</f:facet>    <!-- Koordinaten Spalte -->
                 #{net.coordinates}
             </h:column>
             <h:column>
-                <f:facet name="header">Größe</f:facet>
+                <f:facet name="header">Größe (m²)</f:facet>  <!-- Größe Spalte -->
                 #{net.size}
             </h:column>
             <h:column>
-                <f:facet name="header">Status</f:facet>
-                #{net.status}
+                <f:facet name="header">Status</f:facet> <!-- Status Spalte -->
+                #{net.status}   
             </h:column>
             <h:column>
-                <f:facet name="header">Gemeldet von</f:facet>
-                <h:outputText value="#{net.meldendPerson != null ? net.meldendPerson.name : 'Anonym'}" />
+                <f:facet name="header">Gemeldet von</f:facet>   <!-- Spalte Meldende Person -->
+                <h:outputText value="#{net.meldendePerson.anonym ? 'Anonym' : net.meldendePerson.name}" />
             </h:column>
         </h:dataTable>
     </h:form>

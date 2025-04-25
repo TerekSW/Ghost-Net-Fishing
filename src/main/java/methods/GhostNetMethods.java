@@ -44,7 +44,6 @@ public class GhostNetMethods {
         net.setStatus(GhostNetStatus.GEMELDET); // eingetragenes Netz auf den Status GEMELDET setzen
 
         Person person = net.getMeldendePerson(); // meldende Person abrufen
-
         boolean anonym = false;
 
         // prüfen, ob Person nicht vorhanden --> anonym
@@ -68,7 +67,6 @@ public class GhostNetMethods {
         entityManager.persist(person); // Person speichern
         net.setMeldendePerson(person); // meldende Person Netz zuweisen
         entityManager.persist(net); // Netz speichern
-
     }
 
     // MUST 2 Zur Bergung eintragen
@@ -102,14 +100,21 @@ public class GhostNetMethods {
     public void setGeborgen(long id) {
         GhostNet net = getGhostNetById(id); // Netz anhand ID laden
         net.setStatus(GhostNetStatus.GEBORGEN); // Staus setzen
-        entityManager.merge(net);   // Netz speichern
+        entityManager.merge(net); // Netz speichern
     }
 
     // COULD 5 Netz als verschollen melden
     @Transactional // Führe Datenbank-Transaktion aus
     public void setVerschollen(long id, Person person) {
         GhostNet net = getGhostNetById(id); // Netz anhand ID laden
-        net.setStatus(GhostNetStatus.VERSCHOLLEN);  // Staus setzen
-        entityManager.merge(net);   // Netz speichern
+
+        // Validierung: darf nicht anonym sein
+        if ((person.getName() == null || person.getName().isBlank()) ||
+                (person.getNumber() == null || person.getNumber().isBlank())) {
+            throw new IllegalArgumentException("Die Meldung von verschollenen Netzen darf nicht anonym erfolgen");
+        }
+
+        net.setStatus(GhostNetStatus.VERSCHOLLEN); // Staus setzen
+        entityManager.merge(net); // Netz speichern
     }
 }

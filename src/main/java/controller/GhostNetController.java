@@ -87,7 +87,7 @@ public class GhostNetController implements Serializable {
         return ghostNetMethods.getByStatus(status);
     }
 
-    // Meldung eines neuen Netzes mit Kontaktdaten (optional)
+    // Meldung eines neuen Netzes mit Kontaktdaten 
     public String meldeNetz() {
         newNet.setMeldendePerson(newPerson); // Person dem Netz zuweisen
         ghostNetMethods.meldeNetz(newNet); // Aufruf der meldeNetz-Methode aus GhostNetMethods
@@ -113,7 +113,7 @@ public class GhostNetController implements Serializable {
     }
 
     public void zuBergendeNetze() {
-        this.zeigeZuBergendeNetze = !this.zeigeZuBergendeNetze; // Toogle Liste
+        this.zeigeZuBergendeNetze = !this.zeigeZuBergendeNetze; // Ein-Ausklappen der Liste
     }
 
     public void zeigeAlleNetze() {
