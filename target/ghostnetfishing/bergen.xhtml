@@ -14,10 +14,10 @@
         <h:outputLabel for="bergendeNetze" value="Geisternetz auswählen: " styleClass="label" />
         <!-- Auswahlmenü Netze -->
         <h:selectOneMenu id="bergendeNetze" value="#{ghostNetController.chosenNetId}" required="true"
-            requiredMessage="Bitte wählen Sie ein Netz aus."/>
-            <!--Liste der Netze anhand Id-->
-            <f:selectItems value="#{ghostNetController.zuBergendeNetze}" var="netz" itemValue="#{netz.id}"
-                itemLabel="#{netz.coordinates} - #{netz.size} m²" />
+            requiredMessage="Bitte wählen Sie ein Netz aus." >
+        <!--Liste der Netze anhand Id-->
+        <f:selectItems value="#{ghostNetController.zuBergendeNetze}" var="netz" itemValue="#{netz.id}"
+            itemLabel="#{netz.coordinates} - #{netz.size} m²" />
         </h:selectOneMenu>
         <h:message for="bergendeNetze" style="color: red;" />
         <!-- Vorschau ausgewähltes Netz -->
@@ -29,11 +29,15 @@
 
         <!--Name-->
         <h:outputLabel for="name" value="Name: " styleClass="label" />
-        <h:inputText id="name" value="#{ghostNetController.newPerson.name}" />
+        <h:inputText id="name" value="#{ghostNetController.newPerson.name}" required="true"
+            requiredMessage="Bitte geben Sie ihren Namen an" />
+        <h:message for="name" style="color: red;" />
 
         <!--Telefonnummer-->
         <h:outputLabel for="number" value="Telefonnummer: " styleClass="label" />
-        <h:inputText id="number" value="#{ghostNetController.newPerson.number}" />
+        <h:inputText id="number" value="#{ghostNetController.newPerson.number}" required="true"
+            requiredMessage="Bitte geben Sie ihre Telefonnummer an" />
+        <h:message for="number" style="color: red;" />
 
         <br /> <br />
         <!--Button Aufrufen der bergeNetz-Methode-->

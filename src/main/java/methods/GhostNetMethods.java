@@ -97,8 +97,15 @@ public class GhostNetMethods {
 
     // MUST 4 Netz als geborgen melden
     @Transactional // Führe Datenbank-Transaktion aus
-    public void setGeborgen(long id) {
+    public void setGeborgen(long id, Person person) {
         GhostNet net = getGhostNetById(id); // Netz anhand ID laden
+
+        // Validierung: darf nicht anonym sein
+        if ((person.getName() == null || person.getName().isBlank()) ||
+                (person.getNumber() == null || person.getNumber().isBlank())) {
+            throw new IllegalArgumentException("Die Meldung von verschollenen Netzen darf nicht anonym erfolgen");
+        }
+
         net.setStatus(GhostNetStatus.GEBORGEN); // Staus setzen
         entityManager.merge(net); // Netz speichern
     }

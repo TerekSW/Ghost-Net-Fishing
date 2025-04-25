@@ -87,7 +87,7 @@ public class GhostNetController implements Serializable {
         return ghostNetMethods.getByStatus(status);
     }
 
-    // Meldung eines neuen Netzes mit Kontaktdaten 
+    // Meldung eines neuen Netzes mit Kontaktdaten
     public String meldeNetz() {
         newNet.setMeldendePerson(newPerson); // Person dem Netz zuweisen
         ghostNetMethods.meldeNetz(newNet); // Aufruf der meldeNetz-Methode aus GhostNetMethods
@@ -123,26 +123,26 @@ public class GhostNetController implements Serializable {
     // Netz als geborgen markieren
     public String setGeborgen() {
 
-        GhostNet net = ghostNetMethods.getGhostNetById(chosenNetId);    //Netz anhand ID abgerufen    
+        GhostNet net = ghostNetMethods.getGhostNetById(chosenNetId); // Netz anhand ID abgerufen
 
         if (net == null) {
             return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
         }
-        ghostNetMethods.setGeborgen(chosenNetId);
+        ghostNetMethods.setGeborgen(chosenNetId, newPerson);
         return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
     }
 
     // Netz als verschollen markieren
     public String setVerschollen() {
 
-        GhostNet net = ghostNetMethods.getGhostNetById(chosenNetId);    //Netz anhand ID abgerufen
+        GhostNet net = ghostNetMethods.getGhostNetById(chosenNetId); // Netz anhand ID abgerufen
 
-        //Überprüfung ob Netz ausgewählt
+        // Überprüfung ob Netz ausgewählt
         if (net == null) {
             return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
         }
 
-        ghostNetMethods.setVerschollen(chosenNetId, newPerson); //Status auf VERSCHOLLEN setzen
+        ghostNetMethods.setVerschollen(chosenNetId, newPerson); // Status auf VERSCHOLLEN setzen
         return "index.xhtml?faces-redirect=true"; // Redirect zur Startseite
     }
 }
