@@ -4,7 +4,7 @@
 
 <h:head>
     <title>Zur Bergung anmelden</title>
-    <h:outputStylesheet library="css" name="styles.css" />
+    <h:outputStylesheet library="css" name="styles.css" />  <!--Import Design -->
 </h:head>
 <h:body>
     <h:form>
@@ -13,13 +13,13 @@
         <!--Anzeige ausgewähltes Netz -->
         <h:outputLabel for="bergendeNetze" value="Geisternetz auswählen: " styleClass="label" />
         <!-- Auswahlmenü Netze -->
-        <h:selectOneMenu id="bergendeNetze" value="#{ghostNetController.chosenNetId}" required="true"
-            requiredMessage="Bitte wählen Sie ein Netz aus.">
+        <h:selectOneMenu id="bergendeNetze" value="#{ghostNetController.chosenNetId}" required="true"   
+            requiredMessage="Bitte wählen Sie ein Netz aus.">       <!-- Auswahl eines Netzes Pflicht -->
             <!--Liste der Netze anhand Id-->
             <f:selectItems value="#{ghostNetController.zuBergendeNetze}" var="netz" itemValue="#{netz.id}"
                 itemLabel="#{netz.coordinates} - #{netz.size} m²" />
         </h:selectOneMenu>
-        <h:message for="bergendeNetze" style="color: red;" />
+        <h:message for="bergendeNetze" style="color: red;" />   <!-- Fehlermeldung rot -->
         <!-- Vorschau ausgewähltes Netz -->
         <h:outputText
             value="Netz: #{ghostNetController.chosenNet.coordinates} - #{ghostNetController.chosenNet.size}" />
@@ -29,14 +29,14 @@
 
         <!--Name-->
         <h:outputLabel for="name" value="Name: " styleClass="label" />
-        <h:inputText id="name" value="#{ghostNetController.newPerson.name}" required="true"
-            requiredMessage="Bitte geben Sie ihren Namen an" />
+        <h:inputText id="name" value="#{ghostNetController.newPerson.name}" required="true" 
+            requiredMessage="Bitte geben Sie ihren Namen an" /> <!-- Angabe des Namens Pflicht -->
         <h:message for="name" style="color: red;" />
 
         <!--Telefonnummer-->
         <h:outputLabel for="number" value="Telefonnummer: " styleClass="label" />
         <h:inputText id="number" value="#{ghostNetController.newPerson.number}" required="true"
-            requiredMessage="Bitte geben Sie ihre Telefonnummer an" />
+            requiredMessage="Bitte geben Sie ihre Telefonnummer an" />  <!-- Angabe der Telefonnummer Pflicht -->
         <h:message for="number" style="color: red;" />
 
         <br /> <br />
