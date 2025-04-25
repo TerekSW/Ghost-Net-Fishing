@@ -14,7 +14,7 @@
         <h:outputLabel for="bergendeNetze" value="Geisternetz auswählen: " styleClass="label" />
         <!-- Auswahlmenü Netze -->
         <h:selectOneMenu id="bergendeNetze" value="#{ghostNetController.chosenNetId}" required="true"
-            requiredMessage="Bitte wählen Sie ein Netz aus.">>
+            requiredMessage="Bitte wählen Sie ein Netz aus."/>
             <!--Liste der Netze anhand Id-->
             <f:selectItems value="#{ghostNetController.zuBergendeNetze}" var="netz" itemValue="#{netz.id}"
                 itemLabel="#{netz.coordinates} - #{netz.size} m²" />

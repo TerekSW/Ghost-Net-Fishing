@@ -14,11 +14,13 @@
         <!--Anzeige ausgewähltes Netz -->
         <h:outputLabel for="statusNetze" value="Netz auswählen:" styleClass="label" />
         <!-- Auswahlmenü Netze -->
-        <h:selectOneMenu value="#{ghostNetController.chosenNetId}">
+        <h:selectOneMenu id="statusNetze" value="#{ghostNetController.chosenNetId}" required="true"
+            requiredMessage="Bitte wählen Sie ein Netz aus.">
             <!--Liste der Netze anhand Id-->
             <f:selectItems value="#{ghostNetController.allNets}" var="net" itemValue="#{net.id}"
                 itemLabel="#{net.coordinates} - #{net.size} m² (#{net.status})" />
         </h:selectOneMenu>
+        <h:message for="statusNetze" style="color: red;" />
 
         <!-- Vorschau ausgewähltes Netz -->
         <h:outputText
@@ -28,18 +30,26 @@
 
         <!--Name-->
         <h:outputLabel for="name" value="Name: " styleClass="label" />
-        <h:inputText id="name" value="#{ghostNetController.newPerson.name}" required="false" />
+        <h:inputText id="name" value="#{ghostNetController.newPerson.name}" required="true"
+            requiredMessage="Bitte geben Sie ihren Namen an" />
+        <h:message for="name" style="color: red;" />
+
 
         <!-- Telefonnummer -->
         <h:outputLabel for="tel" value="Telefonnummer:" styleClass="label" />
-        <h:inputText id="tel" value="#{ghostNetController.newPerson.number}" required="false" />
+        <h:inputText id="tel" value="#{ghostNetController.newPerson.number}" required="true"
+            requiredMessage="Bitte geben Sie ihre Telefonnummer an" />
+        <h:message for="tel" style="color: red;" />
+
 
         <br /><br />
         <!--Button Netz als geborgen melden-->
-        <h:commandButton value="Netz als geborgen melden" action="#{ghostNetController.setGeborgen}" styleClass="navButton" />
+        <h:commandButton value="Netz als geborgen melden" action="#{ghostNetController.setGeborgen}"
+            styleClass="navButton" />
 
         <!--Button Netz als verschollen melden-->
-        <h:commandButton value="Netz als verschollen melden" action="#{ghostNetController.setVerschollen}" styleClass="navButton" />
+        <h:commandButton value="Netz als verschollen melden" action="#{ghostNetController.setVerschollen}"
+            styleClass="navButton" />
     </h:form>
 </h:body>
 
