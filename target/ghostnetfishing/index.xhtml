@@ -4,7 +4,7 @@
 
 <h:head>
     <title>Ghost Net Fishing</title>
-    <h:outputStylesheet library="css" name="styles.css" />
+    <h:outputStylesheet library="css" name="styles.css" />  <!--Import Design -->
 </h:head>
 <h:body>
     <h1>Ghost Net Fishing</h1>
@@ -59,7 +59,7 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Gemeldet von</f:facet>   <!-- Spalte Meldende Person -->
-                <h:outputText value="#{net.meldendePerson.anonym ? 'Anonym' : net.meldendePerson.name}" />
+                <h:outputText value="#{net.meldendePerson.anonym ? 'Anonym' : net.meldendePerson.name}" />  <!-- Person anonym? = Ausgabe "Anonym" -->
             </h:column>
         </h:dataTable>
     </h:form>

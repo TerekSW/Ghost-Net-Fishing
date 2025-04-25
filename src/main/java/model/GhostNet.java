@@ -10,6 +10,7 @@ public class GhostNet {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // automatische Generierung der ID
     private long id;
 
+    @Transient  //keine persistente Variable
     private long chosenNetId;
 
     private String coordinates; // Koordinaten des Netzes
