@@ -49,7 +49,7 @@ h1 {
     padding: 20px;
 }
 
-.melden.label, .bergen.label, .status.bergen.label {
+.melden.label, .bergen.label, .status.label {
     padding: 10px 20px;
     margin: 5px;
     border: 1px solid #ccc;

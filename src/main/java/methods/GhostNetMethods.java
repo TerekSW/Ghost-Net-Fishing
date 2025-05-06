@@ -47,12 +47,11 @@ public class GhostNetMethods {
         boolean anonym = false;
 
         // prüfen, ob Person nicht vorhanden --> anonym
-        if (person == null) {
-            anonym = true;
-            // prüfen, ob Name/Telefonnummer leer --> anonym
-        } else if ((person.getName() == null || person.getName().isBlank()) &&
+        if ((person.getName() == null || person.getName().isBlank()) &&
                 (person.getNumber() == null || person.getNumber().isBlank())) {
-            anonym = true;
+            person.setAnonym(true);
+        } else {
+            person.setAnonym(false);
         }
 
         // wenn anonym Name/Telefonnummer null

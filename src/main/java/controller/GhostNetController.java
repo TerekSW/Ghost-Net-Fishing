@@ -2,7 +2,6 @@ package controller;
 
 import java.io.Serializable;
 import java.util.List;
-
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.*;
 import methods.*;
@@ -23,9 +22,9 @@ public class GhostNetController implements Serializable {
 
     private GhostNet chosenNet; // ausgewaehltes Netz
 
-    private boolean zeigeZuBergendeNetze = false;
+    private boolean zeigeZuBergendeNetze = false;   //Toggle für Ein-Ausklappen der Liste
 
-    private boolean zeigeAlleNetze = false;
+    private boolean zeigeAlleNetze = false;     //Toggle für Ein-Ausklappen der Liste 
 
     // Getter und Setter
     public GhostNet getNewNet() {
@@ -113,7 +112,7 @@ public class GhostNetController implements Serializable {
     }
 
     public void zuBergendeNetze() {
-        this.zeigeZuBergendeNetze = !this.zeigeZuBergendeNetze; // Ein-Ausklappen der Liste
+        this.zeigeZuBergendeNetze = !this.zeigeZuBergendeNetze; // Toogle Liste
     }
 
     public void zeigeAlleNetze() {
